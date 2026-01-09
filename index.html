@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>USDT 转账安全清单（2025）：防钓鱼域名/假客服/剪贴板替换 + 留证模板</title>
+  <meta name="description" content="USDT 转账最容易被坑的不是手续费，而是钓鱼域名、假客服、剪贴板替换与网络选错。本页提供一份可执行安全清单：域名核对、链接校验、前6后6、TXID留证模板，并附FAQPage JSON-LD。">
+  <meta name="keywords" content="USDT 转账安全,防钓鱼域名,假客服,剪贴板替换,前6后6,TXID,USDT 网络选择" />
+  <link rel="canonical" href="https://220219lol-cmd.github.io/seo28/" />
+
+  <style>
+    :root{
+      --bg:#06160f;
+      --panel:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.12);
+      --text:#eafff2;
+      --muted:rgba(234,255,242,.72);
+      --green:#22c55e;
+      --green2:#16a34a;
+      --gold:#f4d07b;
+      --shadow:0 18px 45px rgba(0,0,0,.45);
+      --r:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 520px at 12% 0%, rgba(34,197,94,.28), transparent 55%),
+        radial-gradient(900px 420px at 88% 12%, rgba(244,208,123,.18), transparent 60%),
+        linear-gradient(180deg, #04110b 0%, #06160f 40%, #04110b 100%);
+      line-height:1.9;
+    }
+    a{color:inherit}
+    .wrap{max-width:1120px;margin:0 auto;padding:28px 16px 70px}
+    .hero{
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .badge{
+      display:inline-flex;gap:8px;align-items:center;
+      padding:6px 12px;border-radius:999px;
+      background:rgba(34,197,94,.14);
+      border:1px solid rgba(34,197,94,.35);
+      color:#d9ffe7;font-weight:900;font-size:12px;
+    }
+    h1{margin:12px 0 6px;font-size:28px;letter-spacing:.2px}
+    .sub{margin:0;color:var(--muted);max-width:980px}
+
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:999px;text-decoration:none;
+      font-weight:900;font-size:14px;
+      border:1px solid rgba(34,197,94,.35);
+      background:linear-gradient(90deg, rgba(34,197,94,.18), rgba(34,197,94,.06));
+      color:#eafff2;
+    }
+    .btn.primary{
+      border-color:transparent;
+      background:linear-gradient(90deg, var(--green), var(--green2));
+      color:#032012;
+      box-shadow:0 12px 30px rgba(34,197,94,.25);
+    }
+    .btn.gold{
+      border-color:rgba(244,208,123,.45);
+      background:linear-gradient(90deg, rgba(244,208,123,.22), rgba(244,208,123,.08));
+      color:#fff6dd;
+    }
+    .btn:hover{transform:translateY(-1px);transition:.15s}
+
+    .kpis{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:16px}
+    .kpi{
+      grid-column:span 4;
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      background:rgba(255,255,255,.06);
+      padding:14px;
+    }
+    .kpi b{display:block;font-size:14px}
+    .kpi p{margin:6px 0 0;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.kpi{grid-column:span 12} h1{font-size:24px}}
+
+    .section{
+      margin-top:16px;
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+    }
+    .section h2{margin:0 0 10px;font-size:20px;color:#d9ffe7}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+    .card{
+      grid-column:span 6;
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      background:rgba(255,255,255,.06);
+      padding:14px;
+    }
+    @media(max-width:900px){.card{grid-column:span 12}}
+    .card h3{margin:0 0 8px;font-size:16px}
+    .card ul{margin:0;padding-left:18px;color:var(--muted)}
+    .card li{margin:6px 0}
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
+      margin-top:12px;
+      background:rgba(0,0,0,.16);
+    }
+    .table th,.table td{padding:12px 12px;text-align:left}
+    .table th{background:rgba(34,197,94,.10);font-size:13px}
+    .table td{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+
+    .code{
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px;
+      background:#0b1220;
+      color:#e5e7eb;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      font-size:13px;
+      overflow:auto;
+    }
+
+    .callout{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:18px;
+      border:1px dashed rgba(244,208,123,.55);
+      background:rgba(244,208,123,.10);
+      color:#fff6dd;
+      font-weight:900;
+    }
+
+    details{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:12px 14px;
+      background:rgba(0,0,0,.12);
+      margin-top:10px;
+    }
+    summary{cursor:pointer;font-weight:900}
+    .fine{margin-top:14px;color:rgba(234,255,242,.60);font-size:12px}
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <span class="badge">SEO28 · USDT 转账安全清单（防钓鱼/防假客服/防替换）</span>
+      <h1>USDT 转账安全清单（2025）：防钓鱼域名/假客服/剪贴板替换 + 留证模板</h1>
+      <p class="sub">
+        真正导致损失的，往往不是“手续费”，而是：<b>钓鱼域名</b>、<b>假客服</b>、<b>剪贴板替换</b>、<b>网络选错</b>。
+        下面是一份“照做就能避坑”的执行清单，建议收藏。
+      </p>
+
+      <div class="btns">
+        <a class="btn primary" href="https://usdtonlinecasino.com/" target="_blank" rel="noopener">主站资源中心</a>
+        <a class="btn gold" href="https://usdtonlinecasino.com/usdt-payment-guide/" target="_blank" rel="noopener">USDT 支付教学</a>
+        <a class="btn" href="https://usdtonlinecasino.com/usdt-faq/" target="_blank" rel="noopener">USDT FAQ</a>
+        <a class="btn" href="https://usdtonlinecasino.com/usdt-news/" target="_blank" rel="noopener">USDT 最新资讯</a>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi"><b>先核对域名</b><p>只从书签/站内入口进入，不点陌生私信链接</p></div>
+        <div class="kpi"><b>再核对地址</b><p>每次粘贴后都对照“前6后6”</p></div>
+        <div class="kpi"><b>最后留证 TXID</b><p>TXID + 时间 + 地址截图，出现问题不扯皮</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>1）防钓鱼域名：最常见、也最容易忽略</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>你必须坚持的 3 个动作</h3>
+          <ul>
+            <li><b>只用书签进入：</b>第一次确认无误后立刻收藏</li>
+            <li><b>只走站内入口：</b>不要从私信/群里陌生链接跳转</li>
+            <li><b>核对完整域名：</b>看清主域名，别只看“像”</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>高风险信号（看到就停）</h3>
+          <ul>
+            <li>域名多一个字母/少一个字母/多一个“-”</li>
+            <li>页面让你“紧急充值/补差/解冻”</li>
+            <li>客服只催你转账，但不给你明确 TXID/工单号</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout">✅ 你不需要懂技术：只要“书签+核域名”，就能挡掉大多数钓鱼链接。</div>
+    </section>
+
+    <section class="section">
+      <h2>2）防假客服：先要“证据”，再谈处理</h2>
+      <table class="table">
+        <thead><tr><th>对方说法</th><th>你该怎么回</th><th>原因</th></tr></thead>
+        <tbody>
+          <tr><td>“你转错了/不到账/要补一笔才能处理”</td><td>请给工单号、处理流程与 ETA</td><td>正规流程可追踪</td></tr>
+          <tr><td>“把 TXID 发我就行”</td><td>可以，但同时索要确认数阈值与处理时长</td><td>避免无限拖</td></tr>
+          <tr><td>“加我私人号更快”</td><td>拒绝，走官方渠道并留证截图</td><td>避免被引导转账</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">✅ 不要被“紧急”带节奏：先让对方提供可验证的信息（工单号/流程/ETA）。</div>
+    </section>
+
+    <section class="section">
+      <h2>3）防剪贴板替换：前6后6 是最低成本的保险</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>必须做</h3>
+          <ul>
+            <li><b>粘贴后核对前6后6</b></li>
+            <li><b>新地址先小额测试</b></li>
+            <li><b>不要手打地址</b></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>可疑就停</h3>
+          <ul>
+            <li>粘贴后地址末尾“变了”</li>
+            <li>复制同一地址每次不同</li>
+            <li>设备装过不明插件/“优化工具”</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>4）留证模板（复制就能用）</h2>
+      <div class="code">
+【类型】USDT 转账核对/延迟排查<br>
+【网络】TRC20 / ERC20 / BEP20：_____<br>
+【金额】____ USDT<br>
+【收款地址】_____（前6：_____ / 后6：_____）<br>
+【转账时间】_____<br>
+【TXID】_____（出现后补充 + 截图）<br><br>
+备注：若链上已确认但未入账，请提供确认数阈值要求与处理 ETA（工单号）。
+      </div>
+      <div class="callout">✅ 记住：没有 TXID 先别吵；TXID 出来再沟通，效率最高。</div>
+    </section>
+
+    <section class="section">
+      <h2>FAQ（常见问题）</h2>
+      <details><summary>Q1：我怎么确认自己不是点到钓鱼链接？</summary><p>只从书签或站内入口进入，并核对完整域名。不要从陌生私信链接跳转。</p></details>
+      <details><summary>Q2：为什么每次都要核对前6后6？</summary><p>为了防剪贴板替换。它是最低成本、最高收益的安全动作。</p></details>
+      <details><summary>Q3：对方让我再转一笔才能处理，靠谱吗？</summary><p>高风险信号。先索要工单号、处理流程与 ETA，并保留截图，不要被“紧急”带节奏。</p></details>
+      <details><summary>Q4：链上确认了但平台未入账怎么办？</summary><p>先确认确认数是否达标；达标仍未入账，用 TXID + 截图提交工单并索要进度与 ETA。</p></details>
+      <p class="fine">免责声明：本页为科普/教育用途，请遵守所在地法律与规则，自行评估风险。</p>
+    </section>
+  </main>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"我怎么确认自己不是点到钓鱼链接？",
+        "acceptedAnswer":{"@type":"Answer","text":"只从书签或站内入口进入，并核对完整域名。不要从陌生私信链接跳转。"}},
+      {"@type":"Question","name":"为什么每次都要核对前6后6？",
+        "acceptedAnswer":{"@type":"Answer","text":"为了防剪贴板替换。它是最低成本、最高收益的安全动作。"}},
+      {"@type":"Question","name":"对方让我再转一笔才能处理，靠谱吗？",
+        "acceptedAnswer":{"@type":"Answer","text":"高风险信号。先索要工单号、处理流程与 ETA，并保留截图，不要被“紧急”带节奏。"}},
+      {"@type":"Question","name":"链上确认了但平台未入账怎么办？",
+        "acceptedAnswer":{"@type":"Answer","text":"先确认确认数是否达标；达标仍未入账，用 TXID + 截图提交工单并索要进度与 ETA。"}}
+    ]
+  }
+  </script>
+</body>
+</html>
